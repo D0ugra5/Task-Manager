@@ -3,15 +3,17 @@ package com.br.taskmaster.domain.user;
 
 import com.br.taskmaster.domain.task.Task;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Generated;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Repository;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+import org.hibernate.validator.constraints.br.CPF;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "user")
-public class Usuario {
+@Builder
+@Entity(name = "users")
+@Data
+@ToString
+public class User {
 
     @Id() @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUSer;
@@ -23,5 +25,6 @@ public class Usuario {
 
 
     @ManyToOne
+    @JoinColumn(name = "idTask")
     private Task task;
 }
